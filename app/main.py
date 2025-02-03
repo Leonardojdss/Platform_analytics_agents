@@ -5,7 +5,7 @@ from langchain_community.utilities import SQLDatabase
 import os  
 from dotenv import load_dotenv
 from langchain_openai import AzureChatOpenAI 
-#from langchain.agents import AgentExecutor  
+#from langchain.agents import AgentExecutor  sou
 from langchain.agents.agent_types import AgentType  
 from langchain_community.agent_toolkits.sql.base import create_sql_agent  
 from crewai import LLM, Agent, Task, Crew
@@ -18,18 +18,18 @@ warnings.filterwarnings("ignore")
 
 def load_environment_variables():
     os.environ["OPENAI_API_TYPE"] = "azure"  
-    os.environ["OPENAI_API_VERSION"] = "2023-05-15"
-    os.environ["AZURE_ENDPOINT"] = "https://northcentralus.api.cognitive.microsoft.com/openai"  
-    os.environ["OPENAI_API_KEY"] = "231bbdf2f44742cb92410beb990486ce"
+    os.environ["OPENAI_API_VERSION"] = "2024-02-01"
+    os.environ["AZURE_OPENAI_ENDPOINT"] = "x"  
+    os.environ["AZURE_OPENAI_API_KEY"] = "x"
 
 def get_database_connection():
     db_config = {  
         'drivername': 'mssql+pyodbc',  
-        'username': "admindba",  
+        'username': "leonardojdss",  
         'password': "L989644@thelast",  
-        'host': "tcp:appgeninsights.database.windows.net,1433",  
+        'host': "tcp:db-analytics.database.windows.net",  
         'port': 1433,  
-        'database': "db_app",  
+        'database': "db-analytics-dev",  
         'query': {'driver': 'ODBC Driver 18 for SQL Server'}  
     }  
     db_url = URL.create(**db_config)  
@@ -129,7 +129,7 @@ def create_crew_tasks(output, agents):
 def main():
     load_environment_variables()
     db = get_database_connection()
-    llm_azure_langchain = AzureChatOpenAI(deployment_name="gpt-4o-max", temperature=0)
+    llm_azure_langchain = AzureChatOpenAI(deployment_name="gpt-4o", temperature=0)
     agent_executor = create_langchain_agent(db, llm_azure_langchain)
     
     st.title("APP - GenInsight")
@@ -141,7 +141,7 @@ def main():
         if output:
             #st.write("Resposta do agente da LangChain:\n\n", output)
         
-            openai_api_key = "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" 
+            openai_api_key = "x" 
             llm_openai_gpt4o = LLM(model="gpt-4o-mini", 
                                    temperature=0, 
                                    api_key=openai_api_key, 

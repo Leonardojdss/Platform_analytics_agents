@@ -36,4 +36,4 @@ COPY .env /app/.env
 EXPOSE 8501
 
 # Run the application
-CMD ["streamlit", "run", "main.py"]
+CMD ["streamlit", "run", "app/main.py"]
