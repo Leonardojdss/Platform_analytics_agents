@@ -1,0 +1,6 @@
+*\.env
+*\.pyc
+*\repositories\.pyc
+*\service\.pyc
+*\api\.pyc
+*/env

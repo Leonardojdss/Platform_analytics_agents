@@ -1,58 +1,6 @@
-import streamlit as st
-from sqlalchemy import create_engine  
-from sqlalchemy.engine.url import URL  
-from langchain_community.utilities import SQLDatabase  
-import os  
-from dotenv import load_dotenv
-from langchain_openai import AzureChatOpenAI 
-#from langchain.agents import AgentExecutor  sou
-from langchain.agents.agent_types import AgentType  
-from langchain_community.agent_toolkits.sql.base import create_sql_agent  
-from crewai import LLM, Agent, Task, Crew
-import warnings
+from crewai import Agent, Task
 
-load_dotenv()
-
-# Desativar warnings
-warnings.filterwarnings("ignore")
-
-def load_environment_variables():
-    os.environ["OPENAI_API_TYPE"] = "azure"  
-    os.environ["OPENAI_API_VERSION"] = "2024-02-01"
-    os.environ["AZURE_OPENAI_ENDPOINT"] = "x"  
-    os.environ["AZURE_OPENAI_API_KEY"] = "x"
-
-def get_database_connection():
-    db_config = {  
-        'drivername': 'mssql+pyodbc',  
-        'username': "leonardojdss",  
-        'password': "L989644@thelast",  
-        'host': "tcp:db-analytics.database.windows.net",  
-        'port': 1433,  
-        'database': "db-analytics-dev",  
-        'query': {'driver': 'ODBC Driver 18 for SQL Server'}  
-    }  
-    db_url = URL.create(**db_config)  
-    return SQLDatabase.from_uri(db_url)
-
-def create_langchain_agent(db, llm):
-    from langchain_community.agent_toolkits.sql.toolkit import SQLDatabaseToolkit  
-    toolkit = SQLDatabaseToolkit(db=db, llm=llm)  
-    return create_sql_agent(  
-        llm=llm,  
-        toolkit=toolkit,  
-        verbose=True,  
-        agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,  
-    )
-
-def execute_query(agent_executor, query):
-    try:  
-        return agent_executor.invoke(query)  
-    except Exception as e:  
-        print(f"Ocorreu um erro: {e}")
-        return None
-
-def create_crew_agents(llm_openai_gpt4o):
+def create_crew_agents():
     cientista_de_dados = Agent(
         role="cientista de dados",
         goal="Realizar uma análise dos dados fornecido pelo agente do langchain",
@@ -65,7 +13,8 @@ def create_crew_agents(llm_openai_gpt4o):
         ),
         allow_delegation=False,
         verbose=True,
-        llm=llm_openai_gpt4o)
+        llm="azure/gpt-4o"
+        )
 
     analista_de_geracao_recomendacoes = Agent(
         role="Analista de Geração de Recomendações",
@@ -77,7 +26,8 @@ def create_crew_agents(llm_openai_gpt4o):
         ),
         allow_delegation=False,
         verbose=True,
-        llm=llm_openai_gpt4o)
+        llm="azure/gpt-4o"
+        )
 
     # revisao_de_texto = Agent(
     #     role="Analista de Geração de Texto em Markdown",
@@ -125,37 +75,3 @@ def create_crew_tasks(output, agents):
     # )
 
     return [tarefa_cientista_de_dados, tarefa_de_recomendacoes]
-
-def main():
-    load_environment_variables()
-    db = get_database_connection()
-    llm_azure_langchain = AzureChatOpenAI(deployment_name="gpt-4o", temperature=0)
-    agent_executor = create_langchain_agent(db, llm_azure_langchain)
-    
-    st.title("APP - GenInsight")
-    user_input = st.text_input("Digite sua pergunta:")
-    
-    if user_input:
-        output = execute_query(agent_executor, user_input)
-        
-        if output:
-            #st.write("Resposta do agente da LangChain:\n\n", output)
-        
-            openai_api_key = "x" 
-            llm_openai_gpt4o = LLM(model="gpt-4o-mini", 
-                                   temperature=0, 
-                                   api_key=openai_api_key, 
-                                   top_p=1)
-            
-            agents = create_crew_agents(llm_openai_gpt4o)
-            tasks = create_crew_tasks(output, agents)
-            
-            crew = Crew(agents=agents, tasks=tasks, verbose=True, memory=True)
-            result = crew.kickoff()
-            print(result)
-            
-            #revisao_de_texto_output = tasks[2].expected_output
-            st.markdown(f"<div style='word-wrap: break-word;'>{result}</div>", unsafe_allow_html=True)
-
-if __name__ == "__main__":
-    main()

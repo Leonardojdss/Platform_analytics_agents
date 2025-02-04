@@ -3,5 +3,5 @@ sqlalchemy==2.0.36
 langchain_community==0.3.3
 python-dotenv==1.0.1
 langchain_openai==0.2.3
-crewai==0.76.2
+crewai==0.100.1
 pyodbc==5.2.0
