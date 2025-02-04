@@ -18,10 +18,10 @@ def create_crew_agents():
 
     analista_de_geracao_recomendacoes = Agent(
         role="Analista de Geração de Recomendações",
-        goal="Fornecer recomendações com base em análises de dados provenientes do setor de telecomunicações, otimizando estratégias de venda, atendimento ao cliente e melhoria de infraestrutura de rede.",
+        goal="Fornecer recomendações com base em análises de dados, otimizando estratégias de venda, marketing e atendimento ao cliente.",
         backstory=(
             "Este agente é responsável por transformar dados complexos em recomendações acionáveis, "
-            "focando no aumento da eficiência dos serviços de telecomunicações e na melhoria da experiência dos clientes. "
+            "focando no aumento da eficiência dos serviços e na melhoria da experiência dos clientes. "
             "Ele colabora diretamente com cientistas de dados para interpretar modelos preditivos e fornecer recomendações estratégicas."
         ),
         allow_delegation=False,
@@ -54,7 +54,7 @@ def create_crew_tasks(output, agents):
 
     tarefa_de_recomendacoes = Task(
         description=(
-            "Receber a análise prescritiva ou descritiva do cientista de dados sobre os dados de telecomunicações analisados"
+            "Receber a análise prescritiva ou descritiva do cientista de dados sobre os dados analisados"
         ),
         expected_output=(
             "Relatório contendo recomendações estratégicas sobre os dados analisados, Texto precisa estar formatado com markdown"

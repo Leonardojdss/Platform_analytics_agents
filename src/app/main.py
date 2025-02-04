@@ -18,15 +18,22 @@ warnings.filterwarnings("ignore")
 
 def main():
 
+    #dicionarios dos dados
+    path = "src/app/dicionarios_dados.txt"
+    with open(path, "r") as file:
+        dicionario = file.read()
+    print(dicionario)
+
     db = get_database_connection()
     llm_azure_langchain = azure_openai().get_connection()
     agent_executor = create_langchain_agent_sql(db, llm_azure_langchain)
     
     st.title("APP - GenInsight")
     user_input = st.text_input("Digite sua pergunta:")
-    
+    user_input_final = dicionario + "n/n/" + user_input
+
     if user_input:
-        output = agent_langchain_execute_query(agent_executor, user_input)
+        output = agent_langchain_execute_query(agent_executor, user_input_final)
         #output = "faturamento de 100.000"
 
         if output:
