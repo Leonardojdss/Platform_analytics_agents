@@ -13,7 +13,7 @@ def create_crew_agents():
         ),
         allow_delegation=False,
         verbose=True,
-        llm="azure/gpt-4o"
+        llm="azure/gpt-4o-mini"
         )
 
     analista_de_geracao_recomendacoes = Agent(

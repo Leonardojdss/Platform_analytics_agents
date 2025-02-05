@@ -1,7 +1,1 @@
-O banco de dados contém duas tabelas: faturamento e vendas.
-
-A tabela faturamento armazena informações sobre os valores faturados por produto, contendo os seguintes campos: id (chave primária, um identificador único para cada registro), mes (mês da venda, variando de 1 a 12), ano (ano da venda, entre 2021 e 2024), faturamento (valor total faturado no período, armazenado como um número decimal), produto (categoria do produto, podendo ser "eletrônicos", "celulares" ou "videogames"), id_produto (identificador único do produto), estado (estado onde ocorreu a venda, podendo ser "SP", "RJ", "MG", "BA" ou "PR"), vendedor (nome do vendedor responsável pela venda) e loja (nome da loja onde ocorreu a venda, podendo ser "loja centro", "loja leste" ou "loja sul").
-
-A tabela vendas registra informações sobre as unidades vendidas de cada produto. Os campos dessa tabela incluem id (chave primária e identificador único de cada venda), mes (mês da venda, variando de 1 a 12), ano (ano da venda, entre 2021 e 2024), produto (categoria do produto, podendo ser "eletrônicos", "celulares" ou "videogames"), id_produto (identificador único do produto vendido), quantidade_vendida (quantidade total de unidades vendidas), estado (estado onde ocorreu a venda, podendo ser "SP", "RJ", "MG", "BA" ou "PR"), loja (nome da loja onde ocorreu a venda, podendo ser "loja centro", "loja leste" ou "loja sul") e vendedor (nome do vendedor responsável pela venda).
-
-As duas tabelas possuem uma relação lógica baseada no campo id_produto, permitindo cruzar informações entre faturamento e vendas para obter análises mais detalhadas sobre o desempenho dos produtos, lojas e vendedores.
+Adicione os dicioarios dos seus dados

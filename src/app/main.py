@@ -28,13 +28,12 @@ def main():
     llm_azure_langchain = azure_openai().get_connection()
     agent_executor = create_langchain_agent_sql(db, llm_azure_langchain)
     
-    st.title("APP - GenInsight")
+    st.title("Agentes de IA Analíticos")
     user_input = st.text_input("Digite sua pergunta:")
-    #user_input_final = dicionario + "n/n/" + user_input
+    user_input_final = dicionario + "n/" + user_input
 
     if user_input:
-        output = agent_langchain_execute_query(agent_executor, user_input)
-        #output = "faturamento de 100.000"
+        output = agent_langchain_execute_query(agent_executor, user_input_final)
 
         if output:
 

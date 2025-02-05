@@ -1,6 +1,6 @@
 # Agentes Analíticos 
 
-Este projeto é uma solução completa que integra agentes especialistas e capazes de realizar tarefas de análise de dados. Os agentes deste projeto são capazes de traduzir uma simples pergunta em linguagem natural em query SQL e analisar esses dados para responder à pergunta realizada pelo usuário, além de analisar os dados de forma a trazer insights e recomendações importantes para o usuário. Esse projeto tem como objetivo demonstrar de forma simples o poder do uso dos agentes para conversão de valor da IA generativa.
+Este projeto é uma solução completa que integra agentes especialistas capazes de realizar tarefas de análise de dados. Os agentes deste projeto são capazes de traduzir uma simples pergunta em linguagem natural em query SQL e analisar esses dados para responder à pergunta realizada pelo usuário, além de analisar os dados de forma a trazer insights e recomendações importantes para o usuário. Esse projeto tem como objetivo demonstrar de forma simples o poder do uso dos agentes para conversão de valor da IA generativa.
 
 ## Tecnologias Utilizadas
 - **CrewAI**: Framework utilizado para criar e gerenciar os agentes responsáveis pela análise de dados e recomendações.
@@ -10,35 +10,35 @@ Este projeto é uma solução completa que integra agentes especialistas e capaz
 
 ## Configuração do Ambiente
 
-### Iniciar localmente sem docker
+### Iniciar localmente sem Docker
 
 1. Clone o repositório:
-   ```sh
-    git clone https://github.com/Leonardojdss/Platform_analytics_agents.git
-    cd Platform_analytics_agents
-2. Criar ou atualizar arquivo .env com as variaveis de ambiente necessaria (navegar até a sessao Variáveis de Ambiente)
+    ```sh
+     git clone https://github.com/Leonardojdss/Platform_analytics_agents.git
+     cd Platform_analytics_agents
+2. Criar ou atualizar o arquivo .env com as variáveis de ambiente necessárias (navegar até a seção Variáveis de Ambiente)
 3. Criar um ambiente virtual com virtualenv:
-   ```sh
-    virtualenv env
-    source env/bin/activate
-    pip install -r requirements.txt
-4. Iniciar projeto
     ```sh
-    streamlit run src/app/main.py
+     virtualenv env
+     source env/bin/activate
+     pip install -r requirements.txt
+4. Iniciar o projeto
+     ```sh
+     streamlit run src/app/main.py
 
-### Iniciar localmente com docker
+### Iniciar localmente com Docker
 
 1. Clone o repositório:
-   ```sh
-    git clone https://github.com/Leonardojdss/Platform_analytics_agents.git
-    cd Platform_analytics_agents
-2. Criar ou atualizar arquivo .env com as variaveis de ambiente necessaria (navegar até a sessao Variáveis de Ambiente)
-3. Criar build da imagem docker
     ```sh
-    docker build -t Platform_analytics_agents .
-4. Iniciar container com a imagem criada
-    ```sh
-    docker run -d -p 8500:8500 Platform_analytics_agents
+     git clone https://github.com/Leonardojdss/Platform_analytics_agents.git
+     cd Platform_analytics_agents
+2. Criar ou atualizar o arquivo .env com as variáveis de ambiente necessárias (navegar até a seção Variáveis de Ambiente)
+3. Criar build da imagem Docker
+     ```sh
+     docker build -t Platform_analytics_agents .
+4. Iniciar o container com a imagem criada
+     ```sh
+     docker run -d -p 8500:8500 Platform_analytics_agents
 
 ### Variáveis de Ambiente
 
@@ -61,3 +61,13 @@ AZURE_API_KEY="YOUR_AZURE_API_KEY"
 AZURE_API_BASE="YOUR_AZURE_API_BASE"
 AZURE_API_VERSION="2024-02-01"
 ```
+
+## Demonstracao
+
+1. Realize uma pergunta aos seus dados
+
+![alt text](image-1.png)
+
+2. Resultado da sua perguntas com insights e recomendações
+
+![alt text](image-2.png)
