@@ -4,3 +4,4 @@
 *\service\.pyc
 *\api\.pyc
 */env
+*.env

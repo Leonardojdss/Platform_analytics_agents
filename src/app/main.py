@@ -30,10 +30,10 @@ def main():
     
     st.title("APP - GenInsight")
     user_input = st.text_input("Digite sua pergunta:")
-    user_input_final = dicionario + "n/n/" + user_input
+    #user_input_final = dicionario + "n/n/" + user_input
 
     if user_input:
-        output = agent_langchain_execute_query(agent_executor, user_input_final)
+        output = agent_langchain_execute_query(agent_executor, user_input)
         #output = "faturamento de 100.000"
 
         if output:
